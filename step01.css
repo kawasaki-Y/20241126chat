@@ -1,0 +1,233 @@
+/* グローバル設定 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f8;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ヘッダー全体のスタイル */
+.header {
+  display: flex;
+  justify-content: space-between;
+  /* 子要素を左右に分割 */
+  align-items: center;
+  background: linear-gradient(180deg, #7bedb4, #1eb73d);
+  color: #fff;
+  padding: 15px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* 立体感を追加 */
+
+}
+
+/* homeボタンのスタイル */
+.header .home {
+  background-color: #fff;
+  /* 背景色 */
+  color: #05974e;
+  /* 文字色 */
+  padding: 8px 15px;
+  /* 余白 */
+  border-radius: 20px;
+  /* 角丸 */
+  font-size: 14px;
+  /* フォントサイズ */
+  font-weight: bold;
+  /* 太字 */
+  text-align: center;
+  /* 中央揃え */
+  cursor: pointer;
+  /* ポインタを表示 */
+  text-decoration: none;
+  /* 下線を除去 */
+  transition: all 0.3s ease;
+  /* ホバー時のスムーズな変化 */
+}
+
+.header .home:hover {
+  background-color: #1eb73d;
+  /* ホバー時の背景色 */
+  color: #fff;
+  /* ホバー時の文字色 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  /* ホバー時の影 */
+  transform: scale(1.05);
+  /* 少し拡大する */
+}
+
+/* 全体を包むチャットコンテナ */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 60%;
+  /* ウィンドウの90%を使う */
+  max-width: 1200px;
+  /* 最大横幅を1200pxに制限 */
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* メッセージリスト（中央部分） */
+.chat-window {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* メッセージスタイル */
+.message {
+  max-width: 75%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.human {
+  align-self: flex-end;
+  background-color: #4caf50;
+  /* 緑系の背景色 */
+  color: white;
+  text-align: left;
+  padding: 10px 15px;
+  border-radius: 20px 20px 0 20px;
+  /* 右上が丸い */
+  max-width: 75%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  /* 立体感を出す */
+  position: relative;
+}
+
+.human::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: -10px;
+  /* 吹き出しの位置調整 */
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #4caf50;
+  /* 吹き出しの色 */
+}
+
+.computer {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+  color: black;
+  text-align: left;
+  padding: 10px 15px;
+  border-radius: 20px 20px 20px 0;
+  /* 左上が丸い */
+  max-width: 75%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* 立体感を出す */
+  position: relative;
+}
+
+.computer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -10px;
+  /* 吹き出しの位置調整 */
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #f1f1f1 transparent transparent;
+  /* 吹き出しの色 */
+}
+
+/* 入力エリア */
+.input-container {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-top: 1px solid #ddd;
+  background-color: #f7f7f8;
+}
+
+textarea {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none;
+  height: 50px;
+}
+
+button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* スクロールバーのスタイル */
+.chat-window::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.chat-window::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.clear-button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #dc3545;
+  /* 赤色 */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.clear-button:hover {
+  background-color: #c82333;
+}
+
+
+
+/* Canvas（背景） */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  /* 背面に配置 */
+}

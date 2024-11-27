@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>チャット</title>
+<link rel="stylesheet" href="./step01.css">
+</head>
+
+<body>
+
+<div class="header">Chat
+<div class="home">
+  <a href="./index.html">home</a></div>
+</div>
+
+  <!-- コンテンツ表示画面 -->
+
+<div class="chat-container">
+  <!-- メッセージリスト -->
+  <div class="chat-window" id="output"></div>
+
+  <!-- 入力エリア -->
+  <div class="input-container">
+    <textarea id="text" placeholder="メッセージを入力してください..."></textarea>
+    <button id="send">送信</button>
+    <button id="clear" class="clear-button">削除</button>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+  import {
+    getDatabase,
+    ref,
+    push,
+    set,
+    onChildAdded,
+    update,
+  } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC5pwZYeIWEXc3qdWa8Jk7x7EO3EKMJopE",
+    authDomain: "chat-6b2f6.firebaseapp.com",
+    projectId: "chat-6b2f6",
+    storageBucket: "chat-6b2f6.firebasestorage.app",
+    messagingSenderId: "415971970801",
+    appId: "1:415971970801:web:7a4c00350206f1d641a350",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const dbRef = ref(db, "chat");
+
+  // 人間のメッセージ送信
+  $("#send").on("click", function () {
+    const msg = {
+      text: $("#text").val(),
+      role: "human",
+      responded: false, // 応答済みフラグを初期化
+    };
+    const newPostRef = push(dbRef);
+    set(newPostRef, msg);
+    $("#text").val(""); // 入力欄をクリア
+  });
+
+  // onChildAdded イベントの登録を確認
+  console.log("Registering onChildAdded listener");
+
+onChildAdded(dbRef, function (data) {
+  const msg = data.val();
+  const key = data.key; // キーを取得
+  const className = msg.role === "human" ? "human" : "computer";
+  const h = `<p class="${className}">${msg.text}</p>`;
+  $("#output").append(h);
+
+  // 自動スクロール
+  const chatWindow = document.getElementById("output");
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+
+  // 人間のメッセージに対してのみ応答（未応答の場合）
+  if (msg.role === "human" && msg.responded === false) {
+    console.log("Responding to human message: ", key);
+    setTimeout(() => {
+      respondToMessage(msg.text, key);
+    }, 1000); // 応答に1秒のディレイ
+  } else {
+    console.log("Skipping already responded message: ", key);
+  }
+});
+
+  // コンピュータの応答ロジック
+function respondToMessage(humanMessage, key) {
+  let response = "ちょっとわかりません…";
+
+  if (humanMessage.includes("こんにちは")) {
+    response = "こんにちは！お元気ですか？";
+  } else if (humanMessage.includes("元気")) {
+    response = "それは良かったです！";
+  } else if (humanMessage.includes("お名前")) {
+    response = "私はコンピュータです！";
+  }
+
+  // コンピュータの応答をFirebaseに送信
+  const msg = {
+    text: response,
+    role: "computer",
+  };
+
+  const newPostRef = push(dbRef);
+  set(newPostRef, msg);
+
+  // 人間のメッセージにフラグを更新（応答済み）
+  const humanMessageRef = ref(db, `chat/${key}`);
+  update(humanMessageRef, { responded: true })
+    .then(() => {
+      console.log("Updated message as responded: ", key);
+    })
+    .catch((error) => {
+      console.error("Error updating responded flag: ", error);
+    });
+}
+
+  // ここから投稿内容を削除したいが、うまくいかなかった
+document.getElementById("clear").addEventListener("click", function () {
+  const output = document.getElementById("output");
+
+  // DOM上のメッセージをすべて削除
+  while (output.firstChild) {
+    output.removeChild(output.firstChild);
+  }
+
+  // Firebaseのチャット履歴を削除（オプション）
+  const confirmDelete = confirm("Firebaseのデータも削除しますか？");
+  if (confirmDelete) {
+    set(dbRef, null) // Firebaseのデータを削除
+      .then(() => console.log("チャット履歴を削除しました。"))
+      .catch((error) => console.error("削除に失敗しました: ", error));
+  }
+});
+
+</script>
+
+  <canvas id="seasonCanvas"></canvas>
+  <script src="./step01.js"></script>
+
+</body>
+
+</html>

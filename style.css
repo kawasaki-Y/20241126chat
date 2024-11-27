@@ -1,0 +1,1017 @@
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  background: linear-gradient(180deg,#f7f4f4, #bbb5873e);
+  display: flex;
+  justify-content: center;
+  /* 中央に配置 */
+  align-items: center;
+  /* 垂直方向に中央 */
+  min-height: 100vh;
+  /* 画面全体を高さとして使う */
+}
+
+/* ヘッダー全体のスタイル */
+.header {
+  position: fixed;
+  /* ヘッダーを画面上部に固定 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* 画面全幅 */
+  display: flex;
+  justify-content: space-between;
+  /* 子要素を左右に分割 */
+  align-items: center;
+  background: linear-gradient(180deg, #7bedb4, #1eb73d);
+  /* 背景グラデーション */
+  color: #fff;
+  padding: 15px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* 立体感を追加 */
+  z-index: 1000;
+  /* 前面に配置 */
+}
+
+/* homeボタンのスタイル */
+.header .home {
+  background-color: #10b447;
+  /* 背景色 */
+  color: #05974e;
+  /* 文字色 */
+  padding: 8px 15px;
+  /* 余白 */
+  border-radius: 20px;
+  /* 角丸 */
+  font-size: 14px;
+  /* フォントサイズ */
+  font-weight: bold;
+  /* 太字 */
+  text-align: center;
+  /* 中央揃え */
+  cursor: pointer;
+  /* ポインタを表示 */
+  text-decoration: none;
+  /* 下線を除去 */
+  transition: all 0.3s ease;
+  /* ホバー時のスムーズな変化 */
+}
+
+/* ホームボタンのホバー時 */
+.header .home:hover {
+  background-color: #1eb73d;
+  /* ホバー時の背景色 */
+  color: #fff;
+  /* ホバー時の文字色 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  /* ホバー時の影 */
+  transform: scale(1.05);
+  /* 少し拡大する */
+}
+
+/* ヘッダーの高さ分余白を確保 */
+.container {
+  padding-top: 70px;
+  /* ヘッダーの高さ分の余白 */
+}
+/* コンテナ全体の設定 */
+.container {
+  display: flex;
+  width: 100%;
+  /* 全体の幅を90%に設定 */
+  max-width: 1200px;
+  /* 最大幅を設定 */
+  background: rgba(0, 0, 0, 0);
+  /* 背景に透明感を追加 */
+  border-radius: 8px;
+  /* 角を丸める */
+  overflow: hidden;
+  /* コンテンツがはみ出さないようにする */
+}
+
+/* サイドバー
+/* .sidebar {
+  width: 25%;
+  サイドバーを固定幅で指定 
+  background: #077f73;
+  padding: 20px;
+  text-align: center;
+}  */
+
+/* .sidebar h1 { */
+  /* font-size: 18px;
+  margin-bottom: 20px;
+} */
+/* 
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+  color: #66c2ff;
+} */ */ */
+
+/* メインエリア */
+main {
+  width: 200%;
+  /* 残りをメインエリアに割り当て */
+  padding: 20px;
+  background: transparent;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.item1{
+  background: #00509e;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.item2 {
+  background: #00509e;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.item3 {
+  background: #00509e;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.item4 {
+  background: #00509e;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.content h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+/* step部分 */
+
+.content {
+  max-width: 100%;
+  /* 親コンテナの幅を画面幅に制限 */
+  overflow-x: hidden;
+  /* 横スクロールを防止 */
+  padding: 0 20px;
+  /* コンテナ内の左右の余白を追加 */
+  box-sizing: border-box;
+  /* パディングを幅に含める */
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  /* 折り返しを許可 */
+  margin: 100px;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 50px;
+  /* 背景画像のサイズを調整 */
+  padding-top: 60px;
+  /* 背景画像分の余白を確保 */
+  gap: 10px;
+  /* 要素間の隙間を調整 */
+}
+
+
+
+.step-link {
+  color: #333;
+  /* 必要な色を指定 */
+}
+
+a {
+  text-decoration: none !important;
+  /* 必ず下線を消す */
+  color: #fff !important;
+  /* 必ず親要素の色を引き継ぐ */
+}
+
+
+.steps h3 {
+  font-size: 18px;
+  line-height: 1.2;
+  /* h3の行間 */
+  margin-bottom: 10px;
+}
+
+.steps p {
+  font-size: 14px;
+  line-height: 1.5;
+  /* pの行間 */
+  margin-top: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+  margin: 1em 0;
+  /* 見やすくするための余白 */
+}
+
+/* STEP1 個人情報収集 */
+
+.step-01 {
+    position: relative;
+    width: 220px;
+    height: 320px;
+    background: mediumturquoise;
+    border-radius: 15px;
+    cursor: pointer;
+
+    /* 背景画像設定 */
+    background-image: url('./step01.png');
+    background-repeat: no-repeat;
+    background-position: center 40px;
+    background-size: 40px;
+    /* アイコンを小さく設定 */
+
+    /* レイアウト調整 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    /* 背景画像分の余白 */
+    padding-top: 20px;
+    margin: 20px;
+
+    /* テキストのスタイル */
+    font-size: 20px;
+    /* テキストを少し小さめに */
+    font-weight: bold;
+  }
+
+
+.step-01::before,
+.step-01::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: lightblue;
+  transition: all 0.5s;
+}
+
+.step-01::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.step-01::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.step-01:hover::before,
+.step-01:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+
+.step-01:hover:after {
+  content: "最初の一歩が、これからの輝く未来を描き出すから。";
+  font-size: 20px;
+  text-align: center;
+}
+
+/* STEP2 戦略の文章化 */
+
+.step-02 {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  background: mediumturquoise;
+  border-radius: 15px;
+  cursor: pointer;
+
+  /* 背景画像設定 */
+  background-image: url('./step02.png');
+  background-repeat: no-repeat;
+  background-position: center 40px;
+  background-size: 30%;
+  /* アイコンを小さく設定 */
+
+  /* レイアウト調整 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* 背景画像分の余白 */
+  padding-top: 20px;
+  margin: 20px;
+
+  /* テキストのスタイル */
+  font-size: 20px;
+  /* テキストを少し小さめに */
+  font-weight: bold;
+}
+
+.step-02::before,
+.step-02::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: lightblue;
+  transition: all 0.5s;
+}
+
+.step-02::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.step-02::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.step-02:hover::before,
+.step-02:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+
+.step-02:hover:after {
+  content: "ふたりで語り合うことで、思い描いた夢が現実へと形を変える。";
+  font-size: 20px;
+  text-align: center;
+}
+
+/* STEP3 戦略の数値化 */
+
+.step-03 {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  background: mediumturquoise;
+  border-radius: 15px;
+  cursor: pointer;
+
+  /* 背景画像設定 */
+  background-image: url('./step03.png');
+  background-repeat: no-repeat;
+  background-position: center 40px;
+  background-size: 60px;
+  /* アイコンを小さく設定 */
+
+  /* レイアウト調整 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* 背景画像分の余白 */
+  padding-top: 20px;
+  margin: 20px;
+
+  /* テキストのスタイル */
+  font-size: 20px;
+  /* テキストを少し小さめに */
+  font-weight: bold;
+}
+
+.step-03::before,
+.step-03::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: lightblue;
+  transition: all 0.5s;
+}
+
+.step-03::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.step-03::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.step-03:hover::before,
+.step-03:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+
+.step-03:hover:after {
+  content: "夢を数に落とし込むその瞬間、ただの願いが確かな未来へと変わる。";
+  font-size: 20px;
+  text-align: center;
+}
+
+/* STEP4 戦略の数値化 */
+
+.step-04 {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  background: mediumturquoise;
+  border-radius: 15px;
+  cursor: pointer;
+
+  /* 背景画像設定 */
+  background-image: url('./step04.png');
+  background-repeat: no-repeat;
+  background-position: center 40px;
+  background-size: 80px;
+  /* アイコンを小さく設定 */
+
+  /* レイアウト調整 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* 背景画像分の余白 */
+  padding-top: 20px;
+  margin: 20px;
+
+  /* テキストのスタイル */
+  font-size: 20px;
+  /* テキストを少し小さめに */
+  font-weight: bold;
+}
+
+.step-04::before,
+.step-04::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: lightblue;
+  transition: all 0.5s;
+}
+
+.step-04::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.step-04::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.step-04:hover::before,
+.step-04:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 1.0s;
+}
+
+.step-04:hover:after {
+  content: "視界に広がる未来を、一緒に形にしていこう。";
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  text-align: center;
+}
+
+
+/* portfolio部分 */
+
+.portfolio h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.portfolios {
+  display: flex;
+  flex-wrap: wrap;
+  /* 折り返しを有効化 */
+  justify-content: space-around;
+  /* 要素を等間隔で配置 */
+  align-items: center;
+  gap: 20px;
+  /* 要素間の隙間を調整 */
+  margin: 20px auto;
+  /* 上下左右の余白 */
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 50px;
+  /* 背景画像のサイズを調整 */
+  padding-top: 60px;
+  /* 背景画像分の余白を確保 */
+  max-width: 1200px;
+  /* コンテンツの最大幅を設定 */
+  box-sizing: border-box;
+  /* パディングを幅に含める */
+}
+
+
+.port-link {
+  color: #333;
+  /* 必要な色を指定 */
+}
+
+
+.portfolios h3 {
+  font-size: 18px;
+  line-height: 1.2;
+  /* h3の行間 */
+  margin-bottom: 10px;
+}
+
+.portfolios p {
+  font-size: 14px;
+  line-height: 1.5;
+  /* pの行間 */
+  margin-top: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+  margin: 1em 0;
+  /* 見やすくするための余白 */
+}
+
+
+/* 課題1チーズアカデミー */
+
+.port-01 {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  background: rgb(255, 137, 137);
+  border-radius: 15px;
+  cursor: pointer;
+
+  /* 背景画像設定 */
+  background-image: url('./step01.png');
+  background-repeat: no-repeat;
+  background-position: center 40px;
+  background-size: 40px;
+  /* アイコンを小さく設定 */
+
+  /* レイアウト調整 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* 背景画像分の余白 */
+  padding-top: 20px;
+  margin: 20px;
+
+  /* テキストのスタイル */
+  font-size: 20px;
+  /* テキストを少し小さめに */
+  font-weight: bold;
+}
+
+
+.port-01::before,
+.port-01::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: rgba(243, 192, 211, 0.959);
+  transition: all 0.5s;
+}
+
+.port-01::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.port-01::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.port-01:hover::before,
+.port-01:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+
+.port-01:hover:after {
+  content: "最初の一歩が、これからの輝く未来を描き出すから。";
+  font-size: 20px;
+  text-align: center;
+}
+
+/* 課題2 HONEY FARM */
+
+.port-02 {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  background: rgb(255, 137, 137);
+  border-radius: 15px;
+  cursor: pointer;
+
+  /* 背景画像設定 */
+  background-image: url('./step02.png');
+  background-repeat: no-repeat;
+  background-position: center 40px;
+  background-size: 30%;
+  /* アイコンを小さく設定 */
+
+  /* レイアウト調整 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* 背景画像分の余白 */
+  padding-top: 20px;
+  margin: 20px;
+
+  /* テキストのスタイル */
+  font-size: 20px;
+  /* テキストを少し小さめに */
+  font-weight: bold;
+}
+
+.port-02::before,
+.port-02::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: rgba(243, 192, 211, 0.959);
+  transition: all 0.5s;
+}
+
+.port-02::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.port-02::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.port-02:hover::before,
+.port-02:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+
+.port-02:hover:after {
+  content: "ふたりで語り合うことで、思い描いた夢が現実へと形を変える。";
+  font-size: 20px;
+  text-align: center;
+}
+
+/* 課題3 じゃんけんアプリ */
+
+.port-03 {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  background: rgb(255, 137, 137);
+  border-radius: 15px;
+  cursor: pointer;
+
+  /* 背景画像設定 */
+  background-image: url('./step03.png');
+  background-repeat: no-repeat;
+  background-position: center 40px;
+  background-size: 60px;
+  /* アイコンを小さく設定 */
+
+  /* レイアウト調整 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* 背景画像分の余白 */
+  padding-top: 20px;
+  margin: 20px;
+
+  /* テキストのスタイル */
+  font-size: 20px;
+  /* テキストを少し小さめに */
+  font-weight: bold;
+}
+
+.port-03::before,
+.port-03::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: rgba(243, 192, 211, 0.959);
+  transition: all 0.5s;
+}
+
+.port-03::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.port-03::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.port-03:hover::before,
+.port-03:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+
+.port-03:hover:after {
+  content: "夢を数に落とし込むその瞬間、ただの願いが確かな未来へと変わる。";
+  font-size: 20px;
+  text-align: center;
+}
+
+/* 課題4 資金繰り予測表 */
+
+.port-04 {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  background: rgb(255, 137, 137);
+  border-radius: 15px;
+  cursor: pointer;
+
+  /* 背景画像設定 */
+  background-image: url('./step04.png');
+  background-repeat: no-repeat;
+  background-position: center 40px;
+  background-size: 80px;
+  /* アイコンを小さく設定 */
+
+  /* レイアウト調整 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* 背景画像分の余白 */
+  padding-top: 20px;
+  margin: 20px;
+
+  /* テキストのスタイル */
+  font-size: 20px;
+  /* テキストを少し小さめに */
+  font-weight: bold;
+}
+
+.port-04::before,
+.port-04::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: rgba(243, 192, 211, 0.959);
+  transition: all 0.5s;
+}
+
+.port-04::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.port-04::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.port-04:hover::before,
+.port-04:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 1.0s;
+}
+
+.port-04:hover:after {
+  content: "視界に広がる未来を、一緒に形にしていこう。";
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* 課題5 中期経営計画 */
+
+/* 課題4 資金繰り予測表 */
+
+.port-05 {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  background: rgb(255, 137, 137);
+  border-radius: 15px;
+  cursor: pointer;
+
+  /* 背景画像設定 */
+  background-image: url('./step04.png');
+  background-repeat: no-repeat;
+  background-position: center 40px;
+  background-size: 80px;
+  /* アイコンを小さく設定 */
+
+  /* レイアウト調整 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* 背景画像分の余白 */
+  padding-top: 20px;
+  margin: 20px;
+
+  /* テキストのスタイル */
+  font-size: 20px;
+  /* テキストを少し小さめに */
+  font-weight: bold;
+}
+
+.port-05::before,
+.port-05::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: rgba(243, 192, 211, 0.959);
+  transition: all 0.5s;
+}
+
+.port-05::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.port-05::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.port-05:hover::before,
+.port-05:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  transition: all 1.0s;
+}
+
+.port-05:hover:after {
+  content: "視界に広がる未来を、一緒に形にしていこう。";
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+  text-align: center;
+}
+
+/* Canvasを背景用に全画面に配置 */
+#seasonCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  /* 他の要素の背面に配置 */
+}
+
+/* フッター */
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  background: #003366;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.footer-item {
+  text-align: center;
+}
