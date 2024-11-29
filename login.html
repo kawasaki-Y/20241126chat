@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+  <div class="login-box">
+  
+    <form>
+      <div class="user-box">
+        <input type="text" name="" required="">
+        <label>Username</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="" required="">
+        <label>Password</label>
+      </div>
+      <center>
+        <a href="./index.html">
+          SEND
+          <span></span>
+        </a>
+      </center>
+    </form>
+  </div>
+
+  <!-- Firebase JS SDK -->
+  <script type="module">
+    // Firebase SDKの読み込み
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC5pwZYeIWEXc3qdWa8Jk7x7EO3EKMJopE",
+    authDomain: "chat-6b2f6.firebaseapp.com",
+    projectId: "chat-6b2f6",
+    storageBucket: "chat-6b2f6.firebasestorage.app",
+    messagingSenderId: "415971970801",
+    appId: "1:415971970801:web:7a4c00350206f1d641a350",
+  };
+
+    // Firebaseの初期化
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // ログイン処理
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault(); // フォームのデフォルト動作を停止
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        alert("ログイン成功！ ようこそ: " + userCredential.user.email);
+        window.location.href = "./index.html"; // ログイン成功後にリダイレクト
+      } catch (error) {
+        alert("ログイン失敗: " + error.message);
+      }
+    });
+  </script>
+  </body>
+  
+  </html>
+
+</body>
+</html>

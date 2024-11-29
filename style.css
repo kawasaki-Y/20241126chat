@@ -175,11 +175,7 @@ header {
   text-align: center;
 }
 
-.content h2 {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 30px;
-}
+
 
 /* step部分 */
 
@@ -194,21 +190,26 @@ header {
   /* パディングを幅に含める */
 }
 
+.content h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
 .steps {
   display: flex;
-  justify-content: center;
+  /* Flexboxでレイアウト */
+  justify-content: space-between;
+  /* 要素を等間隔で配置 */
   align-items: center;
+  /* 縦方向の中央揃え */
   flex-wrap: wrap;
   /* 折り返しを許可 */
-  margin: 100px;
-  text-align: center;
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: 50px;
-  /* 背景画像のサイズを調整 */
-  padding-top: 60px;
-  /* 背景画像分の余白を確保 */
-  gap: 10px;
+  margin: 0 auto;
+  /* コンテナ全体を中央に配置 */
+  padding: 20px;
+  /* 内側の余白 */
+  gap: 20px;
   /* 要素間の隙間を調整 */
 }
 
