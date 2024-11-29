@@ -319,7 +319,7 @@ a {
 }
 
 .step-01:hover:after {
-  content: "最初の一歩が、これからの輝く未来を描き出すから。";
+  content: "最初の一歩が、これからの輝く未来を描き出す。";
   font-size: 20px;
   text-align: center;
 }
@@ -394,7 +394,7 @@ a {
 }
 
 .step-02:hover:after {
-  content: "ふたりで語り合うことで、思い描いた夢が現実へと形を変える。";
+  content: "語り合うことで、思い描いた夢が現実へと形を変える。";
   font-size: 20px;
   text-align: center;
 }
