@@ -31,7 +31,6 @@ body {
   /* 子要素を左右に分割 */
   align-items: center;
   background: linear-gradient(180deg, #7bedb4, #1eb73d);
-  /* 背景グラデーション */
   color: #fff;
   padding: 15px 20px;
   font-size: 20px;
@@ -39,7 +38,6 @@ body {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* 立体感を追加 */
   z-index: 1000;
   /* 前面に配置 */
 }
@@ -47,7 +45,6 @@ body {
 /* homeボタンのスタイル */
 .header .home {
   background-color: #10b447;
-  /* 背景色 */
   color: #05974e;
   /* 文字色 */
   padding: 8px 15px;
@@ -55,11 +52,8 @@ body {
   border-radius: 20px;
   /* 角丸 */
   font-size: 14px;
-  /* フォントサイズ */
   font-weight: bold;
-  /* 太字 */
   text-align: center;
-  /* 中央揃え */
   cursor: pointer;
   /* ポインタを表示 */
   text-decoration: none;
@@ -89,13 +83,10 @@ body {
 .container {
   display: flex;
   width: 100%;
-  /* 全体の幅を90%に設定 */
   max-width: 1200px;
   /* 最大幅を設定 */
   background: rgba(0, 0, 0, 0);
-  /* 背景に透明感を追加 */
   border-radius: 8px;
-  /* 角を丸める */
   overflow: hidden;
   /* コンテンツがはみ出さないようにする */
 }
@@ -217,7 +208,6 @@ header {
 
 .step-link {
   color: #333;
-  /* 必要な色を指定 */
 }
 
 a {
@@ -682,7 +672,7 @@ a {
 }
 
 .port-01:hover:after {
-  content: "最初の一歩が、これからの輝く未来を描き出すから。";
+  background-image: url(./port01.png);
   font-size: 20px;
   text-align: center;
 }
@@ -757,7 +747,7 @@ a {
 }
 
 .port-02:hover:after {
-  content: "ふたりで語り合うことで、思い描いた夢が現実へと形を変える。";
+  background-image: url(./port02.png);
   font-size: 20px;
   text-align: center;
 }
@@ -832,7 +822,7 @@ a {
 }
 
 .port-03:hover:after {
-  content: "夢を数に落とし込むその瞬間、ただの願いが確かな未来へと変わる。";
+  background-image: url(./port03.png);
   font-size: 20px;
   text-align: center;
 }
@@ -852,7 +842,6 @@ a {
   background-repeat: no-repeat;
   background-position: center 40px;
   background-size: 80px;
-  /* アイコンを小さく設定 */
 
   /* レイアウト調整 */
   display: flex;
@@ -861,13 +850,11 @@ a {
   justify-content: center;
   text-align: center;
 
-  /* 背景画像分の余白 */
   padding-top: 20px;
   margin: 20px;
 
-  /* テキストのスタイル */
+
   font-size: 20px;
-  /* テキストを少し小さめに */
   font-weight: bold;
 }
 
@@ -907,7 +894,7 @@ a {
 }
 
 .port-04:hover:after {
-  content: "視界に広がる未来を、一緒に形にしていこう。";
+  background-image: url(./port04.png);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
   text-align: center;
@@ -985,7 +972,7 @@ a {
 }
 
 .port-05:hover:after {
-  content: "視界に広がる未来を、一緒に形にしていこう。";
+  background-image: url(./port05.png);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
   text-align: center;
