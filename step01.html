@@ -76,7 +76,7 @@
     const msg = {
       text: $("#text").val(),
       role: "human",
-      responded: false, // 応答済みフラグを初期化
+      // responded: false, // 応答済みフラグを初期化
     };
     const newPostRef = push(dbRef);
     set(newPostRef, msg);
