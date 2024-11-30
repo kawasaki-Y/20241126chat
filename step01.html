@@ -13,7 +13,7 @@
 
 <div class="header">Chat
 <div class="home">
-  <a href="./index.html">home</a></div>
+  <a href="./index.html"></a>home</div>
 </div>
 
   <!-- コンテンツ表示画面 -->
@@ -52,11 +52,26 @@
     appId: "1:415971970801:web:7a4c00350206f1d641a350",
   };
 
+  // <!-- initializeAppとfirebaseConfig: Firebaseアプリを初期化。firebaseConfigはFirebaseプロジェクトの設定情報。 -->
+  // < !--getDatabase(app): Firebaseのリアルタイムデータベースを取得。 -->
+  // < !--ref(db, "chat") chatという名前のデータベース参照を作成。この場所にデータが保存され、読み込まれる。-->
+
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
   const dbRef = ref(db, "chat");
 
+
   // 人間のメッセージ送信
+  
+  // ここだけjQuery ライブラリを使用
+  // $("#send").on("click", ...): 「送信」ボタンがクリックされたときに動作するイベントリスナーを登録。
+  // $("#text").val(): テキストエリアに入力された文字列を取得。
+  // push(dbRef): chatに新しいデータ項目を作成する準備。
+  // set(newPostRef, msg): msgオブジェクト（入力内容や役割情報）をFirebaseに送信。
+  // $("#text").val("");: 入力フィールドをクリア。
+
+
+ 
   $("#send").on("click", function () {
     const msg = {
       text: $("#text").val(),
@@ -68,82 +83,228 @@
     $("#text").val(""); // 入力欄をクリア
   });
 
-  // onChildAdded イベントの登録を確認
-  console.log("Registering onChildAdded listener");
+  // onChildAdded イベント
 
-onChildAdded(dbRef, function (data) {
-  const msg = data.val();
-  const key = data.key; // キーを取得
-  const className = msg.role === "human" ? "human" : "computer";
-  const h = `<p class="${className}">${msg.text}</p>`;
-  $("#output").append(h);
+  // onChildAdded(dbRef, function (data)): Firebaseデータベースに新しい子要素が追加されたときにトリガーされる。
+  // data.val(): 新しい子要素の値を取得（例: ユーザーが送信したメッセージ内容）。
+  // data.key: その子要素のユニークキーを取得。
+  // msg.role: メッセージが人間からか、コンピュータからかを判別。
+  // $("#output").append(h): メッセージをチャットウィンドウに追加。
+  // chatWindow.scrollTop = chatWindow.scrollHeight;: チャットウィンドウを自動スクロール。
+  // if (msg.role === "human" && !msg.responded): メッセージが人間からで、応答がまだであれば応答処理を呼び出す。
+  // setTimeout: 応答に1秒の遅延を追加
 
-  // 自動スクロール
-  const chatWindow = document.getElementById("output");
-  chatWindow.scrollTop = chatWindow.scrollHeight;
+  onChildAdded(dbRef, function (data) {
+    const msg = data.val();
+    const key = data.key;
+    console.log("onChildAdded triggered: ", msg);
 
-  // 人間のメッセージに対してのみ応答（未応答の場合）
-  if (msg.role === "human" && msg.responded === false) {
-    console.log("Responding to human message: ", key);
-    setTimeout(() => {
-      respondToMessage(msg.text, key);
-    }, 1000); // 応答に1秒のディレイ
-  } else {
-    console.log("Skipping already responded message: ", key);
-  }
-});
+    const className = msg.role === "human" ? "human" : "computer";
+    const h = `<p class="${className}">${msg.text}</p>`;
+    $("#output").append(h);
 
-  // コンピュータの応答ロジック
-function respondToMessage(humanMessage, key) {
-  let response = "ちょっとわかりません…";
+    // 自動スクロール
+    const chatWindow = document.getElementById("output");
+    chatWindow.scrollTop = chatWindow.scrollHeight;
 
-  if (humanMessage.includes("こんにちは")) {
-    response = "こんにちは！お元気ですか？";
-  } else if (humanMessage.includes("元気")) {
-    response = "それは良かったです！";
-  } else if (humanMessage.includes("お名前")) {
-    response = "私はコンピュータです！";
-  }
+    // 応答処理
+    if (msg.role === "human" && !msg.responded) {
+      console.log("Processing response for message: ", msg.text);
+      setTimeout(() => {
+        respondToMessage(msg.text, key);
+      }, 1000);
+    } else {
+      console.log("Skipping response, message already responded: ", msg);
+    }
+  });
 
-  // コンピュータの応答をFirebaseに送信
-  const msg = {
-    text: response,
-    role: "computer",
-  };
 
-  const newPostRef = push(dbRef);
-  set(newPostRef, msg);
+//   respondToMessage: 入力メッセージに対する応答を生成し、Firebaseに保存する。
 
-  // 人間のメッセージにフラグを更新（応答済み）
-  const humanMessageRef = ref(db, `chat/${key}`);
-  update(humanMessageRef, { responded: true })
-    .then(() => {
-      console.log("Updated message as responded: ", key);
-    })
-    .catch((error) => {
-      console.error("Error updating responded flag: ", error);
-    });
+  function respondToMessage(humanMessage, key) {
+    console.log("Responding to message: ", humanMessage);
+
+    let response = "";
+
+// 応答条件
+
+// 条件が true の場合、変数の処理が実行される
+// else if ： 条件が false の場合、別の条件をチェックする
+// else :  どの条件にも一致しなかった場合に実行される部分。
+//  Math.random(): 0以上1未満のランダムな小数（0.0 ～ 0.999...）を生成。
+// greetings.length: 配列 greetings の要素数を取得。
+// Math.random() * greetings.length：配列のインデックスの範囲に収まる乱数を生成。
+// Math.floor(...)：小数点以下を切り捨て、整数に変換。
+// greetings[...]：greetings 配列の指定されたインデックスに対応する要素を取得。
+
+if (humanMessage.includes("こんにちは")) {
+  const greetings = [
+    "こんにちは！お元気ですか？",
+    "やあ！今日はどんな気分ですか？",
+    "こんにちは！何か楽しいことがありましたか？",
+    "こんにちは！今日はどのように過ごしていますか？",
+    "やあ！お話しするのが楽しみです！",
+    "こんにちは！お会いできて嬉しいです！",
+    "こんにちは！どんなお手伝いをしましょうか？",
+    "こんにちは！新しいことに挑戦していますか？",
+    "やあ！素敵な1日を過ごせていますか？",
+    "こんにちは！何か気になることがあれば教えてください！",
+  ];
+  response = greetings[Math.floor(Math.random() * greetings.length)];
+} else if (humanMessage.includes("元気")) {
+  const positiveResponses = [
+    "それは素晴らしいですね！",
+    "元気でいることは大切です！",
+    "良い調子みたいですね！",
+    "それを聞けて嬉しいです！",
+    "エネルギッシュですね！",
+    "その元気を周りにも分けてあげてください！",
+    "元気なのは素晴らしいことです！",
+    "ポジティブな気持ちで一日を過ごしてください！",
+    "元気そうで良かったです！",
+    "元気があると何でもできそうですね！",
+  ];
+  response = positiveResponses[Math.floor(Math.random() * positiveResponses.length)];
+} else if (humanMessage.includes("名前")) {
+  const nameResponses = [
+    "私はあなたのパートナーです！",
+    "名前はまだないんですけど、あなたが付けてくれますか？",
+    "私はただのプログラムですが、あなたの力になりたいです！",
+    "名前はありませんが、あなたに寄り添います！",
+    "私の名前について考えたことがありますか？",
+    "名前を付けてもらえると嬉しいです！",
+    "名前はありませんが、役に立てれば嬉しいです！",
+    "私は特に名前を必要としていませんが、あなたはどう思いますか？",
+    "私の名前について何か提案はありますか？",
+    "名前がなくても一緒に良い時間を過ごしましょう！",
+  ];
+  response = nameResponses[Math.floor(Math.random() * nameResponses.length)];
+} else if (humanMessage.includes("コーチング")) {
+  const coachingQuestions = [
+    "その目標を達成するためにどんなステップが必要ですか？",
+    "まず最初に取り組みたいことは何ですか？",
+    "その課題を乗り越えたとき、どんな気持ちになると思いますか？",
+    "目標を達成するまでにどんなサポートが必要ですか？",
+    "その目標に対する情熱はどこから来ていますか？",
+    "その目標を達成することで、誰にどのような影響を与えられると思いますか？",
+    "目標に近づくために今日できる小さな一歩は何ですか？",
+    "その目標を達成するために、どんなリソースが必要だと思いますか？",
+    "目標を達成するために、どのように時間を使っていますか？",
+    "その目標を達成することで、あなたの生活はどう変わりますか？",
+  ];
+  response = coachingQuestions[Math.floor(Math.random() * coachingQuestions.length)];
+} else if (humanMessage.includes("計画")) {
+  const managementTips = [
+    "収益性を上げるためにはどの部分を見直すべきですか？",
+    "現在のビジネスモデルの強みは何だと思いますか？",
+    "競合との差別化について考えたことはありますか？",
+    "新しい市場を開拓するためにどんな手段を考えていますか？",
+    "現在の計画に足りない部分はどこにあると思いますか？",
+    "チーム全体で共有できる明確なビジョンはありますか？",
+    "計画を実行するために、どんなリソースが必要ですか？",
+    "収益を最大化するために、どんな商品やサービスを追加すべきですか？",
+    "リスク管理についてどのように考えていますか？",
+    "計画が成功したとき、どのように影響が出ると思いますか？",
+  ];
+  response = managementTips[Math.floor(Math.random() * managementTips.length)];
+} else if (humanMessage.includes("次は")) {
+  const nextSteps = [
+    "次に取り組みたい具体的なステップは何ですか？",
+    "どのようなリソースが必要になると思いますか？",
+    "優先順位をどう設定したいですか？",
+    "次のステップに向けて、誰の助けが必要ですか？",
+    "次の目標に向けてどんなスキルを伸ばしたいですか？",
+    "次のステップに進むために、まず何をする必要がありますか？",
+    "次の行動がどんな結果をもたらすと思いますか？",
+    "次のステップを小さく区切ると、どんなタスクになりますか？",
+    "次のステップを進めるのに、何が一番の障害ですか？",
+    "次のステップを達成するために、どんな準備が必要ですか？",
+  ];
+  response = nextSteps[Math.floor(Math.random() * nextSteps.length)];
+} else if (humanMessage.includes("難しい")) {
+  const challenges = [
+    "その課題に対して、どの部分が最も難しいと感じますか？",
+    "何が障害になっているか、少し掘り下げてみませんか？",
+    "それを解決するためにどんなサポートが必要ですか？",
+    "課題を小さく分解すると、どんな要素がありますか？",
+    "その課題に取り組むための第一歩は何ですか？",
+    "その課題に対する新しい視点を見つけられますか？",
+    "その課題に対して、どんな解決策が考えられますか？",
+    "課題を乗り越えるために、他にどんな選択肢がありますか？",
+    "その課題に取り組むことで、何を得ることができますか？",
+    "課題を共有することで、新しいアイデアが生まれるかもしれません。",
+  ];
+  response = challenges[Math.floor(Math.random() * challenges.length)];
+} else {
+  const defaultResponses = [
+    "その話、もっと詳しく教えていただけますか？",
+    "とても興味深いです！具体的な例を教えていただけますか？",
+    "それについて、どう思っているのか聞かせてください！",
+    "その点についてもっと知りたいです！",
+    "もう少し背景を教えてもらえますか？",
+    "その話題についてさらに詳しく説明していただけますか？",
+    "その内容について、他に何か付け加えたいことはありますか？",
+    "とても興味深いですね！次にどうする予定ですか？",
+    "それを達成するために、何が最も重要だと思いますか？",
+    "その話題に関連する他の考えはありますか？",
+  ];
+  response = defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
 }
 
-  // ここから投稿内容を削除したいが、うまくいかなかった
-document.getElementById("clear").addEventListener("click", function () {
-  const output = document.getElementById("output");
 
-  // DOM上のメッセージをすべて削除
-  while (output.firstChild) {
-    output.removeChild(output.firstChild);
+    console.log("Generated response: ", response);
+
+    // 応答をFirebaseに送信
+
+
+    const msg = {
+      text: response,
+      role: "computer",
+    };
+
+    // push と set: 応答メッセージをFirebaseに保存。
+
+    const newPostRef = push(dbRef);
+    set(newPostRef, msg);
+
+    // フラグを更新（応答済みとしてマーク）
+
+    //   update: 人間のメッセージに対して responded: true を設定し、二重応答を防ぐ。
+
+    const humanMessageRef = ref(db, `chat/${key}`);
+    update(humanMessageRef, { responded: true })
+      .then(() => {
+        console.log("Message marked as responded: ", key);
+      })
+      .catch((error) => {
+        console.error("Error updating responded flag: ", error);
+      });
   }
 
-  // Firebaseのチャット履歴を削除（オプション）
-  const confirmDelete = confirm("Firebaseのデータも削除しますか？");
-  if (confirmDelete) {
-    set(dbRef, null) // Firebaseのデータを削除
-      .then(() => console.log("チャット履歴を削除しました。"))
-      .catch((error) => console.error("削除に失敗しました: ", error));
-  }
-});
+  // メッセージ削除
 
+  // addEventListener("click", ...): 「削除」ボタンがクリックされたときに動作。
+  // output.removeChild(output.firstChild): チャットウィンドウ内のメッセージを1つずつ削除。
+  // set(dbRef, null): Firebaseのデータベース内のchatデータを完全に削除。
+  // confirm: ユーザーに削除の確認ダイアログを表示。
+
+
+  document.getElementById("clear").addEventListener("click", function () {
+    const output = document.getElementById("output");
+
+    while (output.firstChild) {
+      output.removeChild(output.firstChild);
+    }
+
+    const confirmDelete = confirm("Firebaseのデータも削除しますか？");
+    if (confirmDelete) {
+      set(dbRef, null)
+        .then(() => console.log("チャット履歴を削除しました。"))
+        .catch((error) => console.error("削除に失敗しました: ", error));
+    }
+  });
 </script>
+
 
   <canvas id="seasonCanvas"></canvas>
   <script src="./step01.js"></script>
